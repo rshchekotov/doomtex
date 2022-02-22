@@ -30,6 +30,9 @@ adapt it for their own use!
 This project is MIT licensed, so feel free to clone & use and/or modify for
 your use!
 
+Credits for this project go to [[https://github.com/dkantereivin][D. K. Eivin]], who provided me with a gorgeous template
+to start off with!
+
 * Preamble
 This preamble enables you to use the 'doomnote' class in your projects!
 #+begin_src latex
