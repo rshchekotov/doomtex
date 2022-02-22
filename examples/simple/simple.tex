@@ -1,0 +1,33 @@
+\documentclass{doomnote}
+
+% For Demo Purposes:
+\usepackage{lipsum}
+
+\title{Simple DoomNote Demo}
+\date{\today}
+\renewcommand*{\lecnum}{1}
+
+\begin{document}
+\tableofcontents
+\section{Sample Title}
+\lipsum[2]
+\begin{theorem}
+  \lipsum[2]
+\end{theorem}
+
+\begin{proof}
+  {\textasteriskcentered}
+  Insert some fancy proof
+  {\textasteriskcentered}\\
+  \begin{equation*}
+    \frac{d}{dt}\int\int_{\Sigma}\textbf{B} \cdot \text{d}\textbf{S} = \int\int_{\Sigma}\frac{\delta\textbf{B}}{\delta{t}} \cdot \text{d}\textbf{S}
+  \end{equation*}
+\end{proof}
+\begin{eg}
+  \lipsum[2]
+\end{eg}
+
+\begin{definition}
+  Example Definition. Not much to see here )).
+\end{definition}
+\end{document}

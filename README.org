@@ -1,0 +1,233 @@
+#+TITLE: Doom Note
+#+DESCRIPTION: A LaTeX Class File
+#+AUTHOR: Roman Shchekotov (Douma)
+#+PROPERTY: header-args :tangle doomnote.cls
+#+STARTUP: showeverything
+
+* TABLE OF CONTENTS :toc:
+- [[#about-doomnote][About DoomNote]]
+- [[#preamble][Preamble]]
+- [[#packages][Packages]]
+  - [[#general-purpose-packages][General Purpose Packages]]
+  - [[#graphics-packages][Graphics Packages]]
+  - [[#page-layout--elements][Page Layout & Elements]]
+  - [[#math-packages][Math Packages]]
+- [[#package-configuration][Package Configuration]]
+  - [[#tikz-configuration][Tikz Configuration]]
+  - [[#fancy-headers-configuration][Fancy Headers Configuration]]
+  - [[#theorem-environments][Theorem Environments]]
+- [[#macro-definitions][Macro Definitions]]
+  - [[#mathematics][Mathematics]]
+  - [[#graphics][Graphics]]
+
+* About DoomNote
+This document describes the structure of the 'doomnote'-class for LaTeX!
+It is great for use in type-setting mathematical/physical or generally scientific
+documents! As the configuration file expands, so will it's documentation, so
+that modifying the config becomes a piece of cake for anyone who needs to
+adapt it for their own use!
+
+This project is MIT licensed, so feel free to clone & use and/or modify for
+your use!
+
+* Preamble
+This preamble enables you to use the 'doomnote' class in your projects!
+#+begin_src latex
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{doomnote}[<2022\-02\-22> More advanved LaTeX class for notetaking.]
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
+\ProcessOptions\relax
+\LoadClass[12pt]{article}
+#+end_src
+* Packages
+** General Purpose Packages
+- [[https://ftp.mpi-inf.mpg.de/pub/tex/mirror/ftp.dante.de/pub/tex/macros/latex/base/inputenc.pdf][inputenc]]: define document encoding to =utf8=.
+- [[https://www.latex-project.org/help/documentation/encguide.pdf][fontenc]]: define output character \=> font mapping to =T1 (Cork Encoding)=.
+- [[https://ctan.net/macros/latex/contrib/import/import.pdf][import]]: properly scoped importing while preserving the references/paths!
+- [[https://ftp.rrze.uni-erlangen.de/ctan/macros/latex/contrib/pdfpages/pdfpages.pdf][pdfpages]]: allow the proper insertion of PDF pages into your TeX document
+#+begin_src latex
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{import}
+#+end_src
+** Graphics Packages
+- [[https://mirror.informatik.hs-fulda.de/tex-archive/macros/latex/required/graphics/grfguide.pdf][graphicx]]: insert images and graphics
+- [[https://ctan.ebinger.cc/tex-archive/macros/latex/contrib/xcolor/xcolor.pdf][xcolor]]: add color support & macros
+- [[https://ctan.mirror.norbert-ruehl.de/graphics/pgf/base/doc/pgfmanual.pdf][tikz]]: draw whatever you want - in TeX
+- [[https://ctan.joethei.xyz/macros/latex/contrib/transparent/transparent.pdf][transparent]]: support transparent elements
+- [[https://ftp.agdsn.de/pub/mirrors/latex/dante/macros/latex/contrib/tcolorbox/tcolorbox.pdf][tcolorbox]]: colored boxes
+#+begin_src latex
+\RequirePackage{graphicx}
+\RequirePackage[usenames,dvipsnames,table]{xcolor}
+\RequirePackage{tikz}
+\RequirePackage{transparent}
+\RequirePackage{tcolorbox}
+#+end_src
+** Page Layout & Elements
+- [[https://ctan.ebinger.cc/tex-archive/macros/latex/contrib/geometry/geometry.pdf][geometry]]: allows to change the page geometry, adjust the margins & paddings
+- [[https://mirror.informatik.hs-fulda.de/tex-archive/macros/latex/contrib/fancyhdr/fancyhdr.pdf][fancyhdr]]: fancy headers & footers
+- [[https://ctan.math.washington.edu/tex-archive/macros/latex/contrib/scalerel/scalerel.pdf][scalerel]]: scaling & stretching of objects
+- [[https://ftp.mpi-inf.mpg.de/pub/tex/mirror/ftp.dante.de/pub/tex/macros/latex/contrib/stackengine/stackengine.pdf][stackengine]]: customized stacking of objects / insets, ...
+#+begin_src latex
+\RequirePackage[margin=1.25in, top=0.75in]{geometry}
+\RequirePackage{fancyhdr}
+\RequirePackage{scalerel}
+\RequirePackage{stackengine}
+#+end_src
+** Math Packages
+- [[https://ftp.tu-chemnitz.de/pub/tex/macros/latex/required/amsmath/amsldoc.pdf][amsmath]]: provides useful math environment for multiline equations and more
+- [[https://packages.oth-regensburg.de/ctan/macros/latex/required/amscls/doc/amsthdoc.pdf][amsthm]]: provides useful environments/macros for theorem typesetting
+- [[https://ctan.math.washington.edu/tex-archive/fonts/amsfonts/doc/amssymb.pdf][amssymb]]: provides mathematical symbols & fonts
+- [[https://ctan.net/macros/latex/contrib/thmtools/doc/thmtools-manual.pdf][thmtools]]: provides advanced theorem typesetting options
+- [[https://ctan.ebinger.cc/tex-archive/macros/latex/contrib/karnaugh/kvdoc.pdf][kvmacros]]: allows typesetting karnaugh maps & veitch charts
+#+begin_src latex
+\RequirePackage{amsmath}
+\RequirePackage{amsthm}
+\RequirePackage{amssymb}
+\RequirePackage{thmtools}
+\input kvmacros
+#+end_src
+
+* Package Configuration
+** Tikz Configuration
+Includes the [[https://tikz.dev/library-shapes][shapes]] and [[https://tikz.dev/library-backgrounds][backgrounds]] libraries.
+#+begin_src latex
+\usetikzlibrary{shapes, backgrounds}
+#+end_src
+** Fancy Headers Configuration
+Configure the page headers & footers.
+- Top-Left: Lecture Number (if available)
+- Top-Center: Document Title
+- Top-Right: Date (of last compilation)
+#+begin_src latex
+\pagestyle{fancy}
+\newcommand\lecnum{Note}
+\headheight .75in
+\headsep .25in
+\lhead{\lecnum}
+\chead{\textbf{\boldmath{\Large \@title}}}
+\rhead{\footnotesize \@date}
+#+end_src
+** Theorem Environments
+*** Theorem Tools - Style Configuration
+#+begin_src latex
+\theoremstyle{definition}
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{ForestGreen!70!black}, bodyfont=\normalfont,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=ForestGreen, backgroundcolor=ForestGreen!5,
+    }
+]{thmgreenbox} % Theorem Indented Box w Green Background
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{NavyBlue!70!black}, bodyfont=\normalfont,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=NavyBlue, backgroundcolor=NavyBlue!5,
+    }
+]{thmbluebox} % Theorem Indented Box w Blue Background
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{NavyBlue!70!black}, bodyfont=\normalfont,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=NavyBlue
+    }
+]{thmblueline} % Theorem Indented Box w Blue Line, no background
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{RawSienna!70!black}, bodyfont=\normalfont,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=RawSienna, backgroundcolor=RawSienna!5,
+    }
+]{thmredbox} % Theorem Indented Box w Red Background
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{RawSienna!70!black}, bodyfont=\normalfont,
+    numbered=no,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=RawSienna, backgroundcolor=RawSienna!1,
+    },
+    qed=\qedsymbol
+]{thmproofbox} % Theorem Proof Box w Red/Brown Background
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{NavyBlue!70!black}, bodyfont=\normalfont,
+    numbered=no,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=NavyBlue, backgroundcolor=NavyBlue!1,
+    },
+]{thmexplanationbox} % Theorem Proof Box w Red/Brown Background
+#+end_src
+*** Theorem Tools - Theorem Configuration
+Theorem Declarations
+#+begin_src latex
+\declaretheorem[style=thmgreenbox, name=Definition]{definition}
+\declaretheorem[style=thmbluebox, numbered=no, name=Example]{eg}
+\declaretheorem[style=thmredbox, name=>, numbered=no]{notabene}
+\declaretheorem[style=thmredbox, name=Proposition]{prop}
+\declaretheorem[style=thmredbox, name=Theorem]{theorem}
+\declaretheorem[style=thmredbox, name=Lemma]{lemma}
+\declaretheorem[style=thmredbox, numbered=no, name=Corollary]{corollary}
+\declaretheorem[style=thmproofbox, name=Proof]{replacementproof}
+\renewenvironment{proof}[1][\proofname]{\vspace{-10pt}\begin{replacementproof}}{\end{replacementproof}}
+
+\declaretheorem[style=thmexplanationbox, name=Proof]{tmpexplanation}
+\newenvironment{explanation}[1][]{\vspace{-10pt}\begin{tmpexplanation}}{\end{tmpexplanation}}
+
+\declaretheorem[style=thmblueline, numbered=no, name=Remark]{remark}
+\declaretheorem[style=thmblueline, numbered=no, name=Note]{note}
+
+\tcbuselibrary{breakable}
+\newenvironment{popout}[1]{\begin{tcolorbox}[
+    arc=0mm,
+    colback=white,
+    colframe=green!60!black,
+    title=#1,
+    fonttitle=\sffamily,
+    breakable
+]}{\end{tcolorbox}}
+#+end_src
+*** Theorem Tools - Theorem Env. Patches
+Quick Patch to remove the indentations after our theorem environments
+#+begin_src latex
+\AfterEndEnvironment{definition}{\noindent\ignorespaces}
+\AfterEndEnvironment{eg}{\noindent\ignorespaces}
+\AfterEndEnvironment{prop}{\noindent\ignorespaces}
+\AfterEndEnvironment{theorem}{\noindent\ignorespaces}
+\AfterEndEnvironment{lemma}{\noindent\ignorespaces}
+\AfterEndEnvironment{corollary}{\noindent\ignorespaces}
+\AfterEndEnvironment{replacementproof}{\noindent\ignorespaces}
+\AfterEndEnvironment{tmpexplanation}{\noindent\ignorespaces}
+\AfterEndEnvironment{remark}{\noindent\ignorespaces}
+\AfterEndEnvironment{note}{\noindent\ignorespaces}
+\AfterEndEnvironment{popout}{\noindent\ignorespaces}
+#+end_src
+* Macro Definitions
+** Mathematics
+- =\equalhat= - the 'corresponds to' math symbol
+#+begin_src latex
+\newcommand\equalhat{\mathrel{\stackon[1.5pt]{=}{\stretchto{
+      \scalerel*[\widthof{=}]{\wedge}{\rule{1ex}{3ex}}}{0.5ex}}}}
+#+end_src
+** Graphics
+- =\incfig{figure_name}= - Include SVG Figure
+- =\incimg{image_name}= - Include Image
+#+begin_src latex
+\graphicspath{{./figures/}}
+\newcommand{\incfig}[1]{
+  \def \svgwidth{\textwidth}
+  \import{./figures/}{#1.pdf_tex}
+}
+\newcommand{\incimg}[1]{\par \includegraphics[width=\textwidth]{#1}}
+#+end_src

@@ -1,0 +1,7 @@
+# AUCTeX
+**/.auctex-auto/
+
+# Log Files
+**/*.log
+**/*.aux
+**/*.toc
