@@ -97,7 +97,7 @@ This preamble enables you to use the 'doomnote' class in your projects!
 \RequirePackage{amsthm}
 \RequirePackage{amssymb}
 \RequirePackage{thmtools}
-\input kvmacros
+\input{karnaugh/kvmacros}
 #+end_src
 
 * Package Configuration

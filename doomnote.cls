@@ -26,7 +26,7 @@
 \RequirePackage{amsthm}
 \RequirePackage{amssymb}
 \RequirePackage{thmtools}
-\input kvmacros
+\input{karnaugh/kvmacros}
 
 \usetikzlibrary{shapes, backgrounds}
 
