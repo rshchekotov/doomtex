@@ -11,10 +11,12 @@
   - [[#general-purpose-packages][General Purpose Packages]]
   - [[#graphics-packages][Graphics Packages]]
   - [[#page-layout--elements][Page Layout & Elements]]
+  - [[#document-components][Document Components]]
   - [[#math-packages][Math Packages]]
 - [[#package-configuration][Package Configuration]]
   - [[#tikz-configuration][Tikz Configuration]]
   - [[#fancy-headers-configuration][Fancy Headers Configuration]]
+  - [[#hyperref-configuration][HyperRef Configuration]]
   - [[#theorem-environments][Theorem Environments]]
 - [[#macro-definitions][Macro Definitions]]
   - [[#mathematics][Mathematics]]
@@ -77,6 +79,13 @@ This preamble enables you to use the 'doomnote' class in your projects!
 \RequirePackage{scalerel}
 \RequirePackage{stackengine}
 #+end_src
+** Document Components
+- [[https://mirror.informatik.hs-fulda.de/tex-archive/macros/latex/contrib/booktabs/booktabs.pdf][booktabs]]: enables to write beatiful tables
+- [[https://mirror.clientvps.com/CTAN/macros/latex/contrib/hyperref/doc/hyperref-doc.pdf][hyperref]]: enables you to reference url's and labels inside the PDF interactively
+#+begin_src latex
+\RequirePackage{booktabs}
+\RequirePackage{hyperref}
+#+end_src
 ** Math Packages
 - [[https://ftp.tu-chemnitz.de/pub/tex/macros/latex/required/amsmath/amsldoc.pdf][amsmath]]: provides useful math environment for multiline equations and more
 - [[https://packages.oth-regensburg.de/ctan/macros/latex/required/amscls/doc/amsthdoc.pdf][amsthm]]: provides useful environments/macros for theorem typesetting
@@ -111,8 +120,28 @@ Configure the page headers & footers.
 \chead{\textbf{\boldmath{\Large \@title}}}
 \rhead{\footnotesize \@date}
 #+end_src
+** HyperRef Configuration
+Configure the HyperReference Colors
+#+begin_src latex
+\hypersetup{
+  colorlinks,
+  linkcolor={red!50!black},
+  citecolor={blue!50!black},
+  urlcolor={blue!80!black}
+}
+#+end_src
 ** Theorem Environments
 *** Theorem Tools - Style Configuration
+Configure the Environment Color Schemes:
+| Theme             | Header Color                  | Background Color             | Line Color |
+|-------------------+-------------------------------+------------------------------+------------|
+| thmgreenbox       | 70% =#00ab4f= & 30% =#000000= | 5% =#00ab4f= & 95% =#ffffff= | =#00ab4f=  |
+| thmbluebox        | 70% =#086fbd= & 30% =#000000= | 5% =#086fbd= & 95% =#ffffff= | =#086fbd=  |
+| thmredbox         | 70% =#9e3c0e= & 30% =#000000= | 5% =#9e3c0e= & 95% =#ffffff= | =#9e3c0e=  |
+| thmproofbox       | 70% =#9e3c0e= & 30% =#000000= | 1% =#9e3c0e= & 99% =#ffffff= | =#9e3c0e=  |
+| thmexplanationbox | 70% =#086fbd= & 30% =#000000= | 1% =#086fbd= & 99% =#ffffff= | =#086fbd=  |
+| thmblueline       | 70% =#086fbd= & 30% =#000000= | =#ffffff=                    | =#086fbd=  |
+
 #+begin_src latex
 \theoremstyle{definition}
 \declaretheoremstyle[
@@ -131,16 +160,7 @@ Configure the page headers & footers.
         rightline=false, topline=false, bottomline=false,
         linecolor=NavyBlue, backgroundcolor=NavyBlue!5,
     }
-]{thmbluebox} % Theorem Indented Box w Blue Background
-
-\declaretheoremstyle[
-    headfont=\bfseries\sffamily\color{NavyBlue!70!black}, bodyfont=\normalfont,
-    mdframed={
-        linewidth=2pt,
-        rightline=false, topline=false, bottomline=false,
-        linecolor=NavyBlue
-    }
-]{thmblueline} % Theorem Indented Box w Blue Line, no background
+]{thmbluebox}
 
 \declaretheoremstyle[
     headfont=\bfseries\sffamily\color{RawSienna!70!black}, bodyfont=\normalfont,
@@ -149,7 +169,7 @@ Configure the page headers & footers.
         rightline=false, topline=false, bottomline=false,
         linecolor=RawSienna, backgroundcolor=RawSienna!5,
     }
-]{thmredbox} % Theorem Indented Box w Red Background
+]{thmredbox}
 
 \declaretheoremstyle[
     headfont=\bfseries\sffamily\color{RawSienna!70!black}, bodyfont=\normalfont,
@@ -160,7 +180,7 @@ Configure the page headers & footers.
         linecolor=RawSienna, backgroundcolor=RawSienna!1,
     },
     qed=\qedsymbol
-]{thmproofbox} % Theorem Proof Box w Red/Brown Background
+]{thmproofbox}
 
 \declaretheoremstyle[
     headfont=\bfseries\sffamily\color{NavyBlue!70!black}, bodyfont=\normalfont,
@@ -170,10 +190,32 @@ Configure the page headers & footers.
         rightline=false, topline=false, bottomline=false,
         linecolor=NavyBlue, backgroundcolor=NavyBlue!1,
     },
-]{thmexplanationbox} % Theorem Proof Box w Red/Brown Background
+]{thmexplanationbox}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{NavyBlue!70!black}, bodyfont=\normalfont,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=NavyBlue
+    }
+]{thmblueline}
 #+end_src
 *** Theorem Tools - Theorem Configuration
-Theorem Declarations
+Available Environments:
+- =corollary= - the lite version of a 'theorem'
+- =definition= - define symbols and terms in your notes
+- =eg= - examples
+- =explanation= - explanation
+- =lemma= - the lite version of a 'corollary'
+- =notabene= - author's notes / important, but short remark or 'side note'
+- =note= - note
+- =popout= - popout note
+- =proof= - mathematical proof
+- =prop= - proposition
+- =remark= - remark
+- =theorem= - environment for mathematical theories
+
 #+begin_src latex
 \declaretheorem[style=thmgreenbox, name=Definition]{definition}
 \declaretheorem[style=thmbluebox, numbered=no, name=Example]{eg}
@@ -216,6 +258,7 @@ Quick Patch to remove the indentations after our theorem environments
 \AfterEndEnvironment{note}{\noindent\ignorespaces}
 \AfterEndEnvironment{popout}{\noindent\ignorespaces}
 #+end_src
+
 * Macro Definitions
 ** Mathematics
 - =\equalhat= - the 'corresponds to' math symbol

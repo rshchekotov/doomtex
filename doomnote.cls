@@ -19,6 +19,9 @@
 \RequirePackage{scalerel}
 \RequirePackage{stackengine}
 
+\RequirePackage{booktabs}
+\RequirePackage{hyperref}
+
 \RequirePackage{amsmath}
 \RequirePackage{amsthm}
 \RequirePackage{amssymb}
@@ -34,6 +37,13 @@
 \lhead{\lecnum}
 \chead{\textbf{\boldmath{\Large \@title}}}
 \rhead{\footnotesize \@date}
+
+\hypersetup{
+  colorlinks,
+  linkcolor={red!50!black},
+  citecolor={blue!50!black},
+  urlcolor={blue!80!black}
+}
 
 \theoremstyle{definition}
 \declaretheoremstyle[
@@ -52,16 +62,7 @@
         rightline=false, topline=false, bottomline=false,
         linecolor=NavyBlue, backgroundcolor=NavyBlue!5,
     }
-]{thmbluebox} % Theorem Indented Box w Blue Background
-
-\declaretheoremstyle[
-    headfont=\bfseries\sffamily\color{NavyBlue!70!black}, bodyfont=\normalfont,
-    mdframed={
-        linewidth=2pt,
-        rightline=false, topline=false, bottomline=false,
-        linecolor=NavyBlue
-    }
-]{thmblueline} % Theorem Indented Box w Blue Line, no background
+]{thmbluebox}
 
 \declaretheoremstyle[
     headfont=\bfseries\sffamily\color{RawSienna!70!black}, bodyfont=\normalfont,
@@ -70,7 +71,7 @@
         rightline=false, topline=false, bottomline=false,
         linecolor=RawSienna, backgroundcolor=RawSienna!5,
     }
-]{thmredbox} % Theorem Indented Box w Red Background
+]{thmredbox}
 
 \declaretheoremstyle[
     headfont=\bfseries\sffamily\color{RawSienna!70!black}, bodyfont=\normalfont,
@@ -81,7 +82,7 @@
         linecolor=RawSienna, backgroundcolor=RawSienna!1,
     },
     qed=\qedsymbol
-]{thmproofbox} % Theorem Proof Box w Red/Brown Background
+]{thmproofbox}
 
 \declaretheoremstyle[
     headfont=\bfseries\sffamily\color{NavyBlue!70!black}, bodyfont=\normalfont,
@@ -91,7 +92,16 @@
         rightline=false, topline=false, bottomline=false,
         linecolor=NavyBlue, backgroundcolor=NavyBlue!1,
     },
-]{thmexplanationbox} % Theorem Proof Box w Red/Brown Background
+]{thmexplanationbox}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{NavyBlue!70!black}, bodyfont=\normalfont,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=NavyBlue
+    }
+]{thmblueline}
 
 \declaretheorem[style=thmgreenbox, name=Definition]{definition}
 \declaretheorem[style=thmbluebox, numbered=no, name=Example]{eg}
