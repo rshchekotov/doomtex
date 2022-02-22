@@ -47,7 +47,7 @@ This preamble enables you to use the 'doomnote' class in your projects!
 * Packages
 ** General Purpose Packages
 - [[https://ftp.mpi-inf.mpg.de/pub/tex/mirror/ftp.dante.de/pub/tex/macros/latex/base/inputenc.pdf][inputenc]]: define document encoding to =utf8=.
-- [[https://www.latex-project.org/help/documentation/encguide.pdf][fontenc]]: define output character \=> font mapping to =T1 (Cork Encoding)=.
+- [[https://www.latex-project.org/help/documentation/encguide.pdf][fontenc]]: define output character -> font mapping to =T1 (Cork Encoding)=.
 - [[https://ctan.net/macros/latex/contrib/import/import.pdf][import]]: properly scoped importing while preserving the references/paths!
 - [[https://ftp.rrze.uni-erlangen.de/ctan/macros/latex/contrib/pdfpages/pdfpages.pdf][pdfpages]]: allow the proper insertion of PDF pages into your TeX document
 #+begin_src latex
