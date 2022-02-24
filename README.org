@@ -17,6 +17,7 @@
   - [[#tikz-configuration][Tikz Configuration]]
   - [[#fancy-headers-configuration][Fancy Headers Configuration]]
   - [[#hyperref-configuration][HyperRef Configuration]]
+  - [[#enumitem-configuration][EnumItem Configuration]]
   - [[#theorem-environments][Theorem Environments]]
 - [[#macro-definitions][Macro Definitions]]
   - [[#mathematics][Mathematics]]
@@ -48,22 +49,23 @@ This preamble enables you to use the 'doomnote' class in your projects!
 ** General Purpose Packages
 - [[https://ftp.mpi-inf.mpg.de/pub/tex/mirror/ftp.dante.de/pub/tex/macros/latex/base/inputenc.pdf][inputenc]]: define document encoding to =utf8=.
 - [[https://www.latex-project.org/help/documentation/encguide.pdf][fontenc]]: define output character -> font mapping to =T1 (Cork Encoding)=.
+- [[https://ctan.ebinger.cc/tex-archive/macros/latex/contrib/xcolor/xcolor.pdf][xcolor]]: add color support & macros (required to load early due to usage in =pdfpages=)
 - [[https://ctan.net/macros/latex/contrib/import/import.pdf][import]]: properly scoped importing while preserving the references/paths!
 - [[https://ftp.rrze.uni-erlangen.de/ctan/macros/latex/contrib/pdfpages/pdfpages.pdf][pdfpages]]: allow the proper insertion of PDF pages into your TeX document
 #+begin_src latex
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
+\RequirePackage[usenames,dvipsnames,table]{xcolor}
 \RequirePackage{import}
+\RequirePackage{pdfpages}
 #+end_src
 ** Graphics Packages
 - [[https://mirror.informatik.hs-fulda.de/tex-archive/macros/latex/required/graphics/grfguide.pdf][graphicx]]: insert images and graphics
-- [[https://ctan.ebinger.cc/tex-archive/macros/latex/contrib/xcolor/xcolor.pdf][xcolor]]: add color support & macros
 - [[https://ctan.mirror.norbert-ruehl.de/graphics/pgf/base/doc/pgfmanual.pdf][tikz]]: draw whatever you want - in TeX
 - [[https://ctan.joethei.xyz/macros/latex/contrib/transparent/transparent.pdf][transparent]]: support transparent elements
 - [[https://ftp.agdsn.de/pub/mirrors/latex/dante/macros/latex/contrib/tcolorbox/tcolorbox.pdf][tcolorbox]]: colored boxes
 #+begin_src latex
 \RequirePackage{graphicx}
-\RequirePackage[usenames,dvipsnames,table]{xcolor}
 \RequirePackage{tikz}
 \RequirePackage{transparent}
 \RequirePackage{tcolorbox}
@@ -82,9 +84,11 @@ This preamble enables you to use the 'doomnote' class in your projects!
 ** Document Components
 - [[https://mirror.informatik.hs-fulda.de/tex-archive/macros/latex/contrib/booktabs/booktabs.pdf][booktabs]]: enables to write beatiful tables
 - [[https://mirror.clientvps.com/CTAN/macros/latex/contrib/hyperref/doc/hyperref-doc.pdf][hyperref]]: enables you to reference url's and labels inside the PDF interactively
+- [[https://mirror.physik.tu-berlin.de/pub/CTAN/macros/latex/contrib/enumitem/enumitem.pdf][enumitem]]: enables you to customize lists
 #+begin_src latex
 \RequirePackage{booktabs}
 \RequirePackage{hyperref}
+\RequirePackage{enumitem}
 #+end_src
 ** Math Packages
 - [[https://ftp.tu-chemnitz.de/pub/tex/macros/latex/required/amsmath/amsldoc.pdf][amsmath]]: provides useful math environment for multiline equations and more
@@ -129,6 +133,13 @@ Configure the HyperReference Colors
   citecolor={blue!50!black},
   urlcolor={blue!80!black}
 }
+#+end_src
+** EnumItem Configuration
+Create a =compitemize= environment for compact lists
+#+begin_src latex
+\newenvironment{compitemize}
+  {\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]}
+  {\end{itemize}}
 #+end_src
 ** Theorem Environments
 *** Theorem Tools - Style Configuration
@@ -272,7 +283,7 @@ Quick Patch to remove the indentations after our theorem environments
 #+begin_src latex
 \graphicspath{{./figures/}}
 \newcommand{\incfig}[1]{
-  \def \svgwidth{\textwidth}
+  \def\svgwidth{\textwidth}
   \import{./figures/}{#1.pdf_tex}
 }
 \newcommand{\incimg}[1]{\par \includegraphics[width=\textwidth]{#1}}

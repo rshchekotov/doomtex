@@ -6,10 +6,11 @@
 
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
+\RequirePackage[usenames,dvipsnames,table]{xcolor}
 \RequirePackage{import}
+\RequirePackage{pdfpages}
 
 \RequirePackage{graphicx}
-\RequirePackage[usenames,dvipsnames,table]{xcolor}
 \RequirePackage{tikz}
 \RequirePackage{transparent}
 \RequirePackage{tcolorbox}
@@ -21,6 +22,7 @@
 
 \RequirePackage{booktabs}
 \RequirePackage{hyperref}
+\RequirePackage{enumitem}
 
 \RequirePackage{amsmath}
 \RequirePackage{amsthm}
@@ -44,6 +46,10 @@
   citecolor={blue!50!black},
   urlcolor={blue!80!black}
 }
+
+\newenvironment{compitemize}
+  {\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]}
+  {\end{itemize}}
 
 \theoremstyle{definition}
 \declaretheoremstyle[
@@ -146,7 +152,7 @@
 
 \graphicspath{{./figures/}}
 \newcommand{\incfig}[1]{
-  \def \svgwidth{\textwidth}
+  \def\svgwidth{\textwidth}
   \import{./figures/}{#1.pdf_tex}
 }
 \newcommand{\incimg}[1]{\par \includegraphics[width=\textwidth]{#1}}
