@@ -23,11 +23,11 @@ to start off with!
 ** Classes
 | Status | Identifier                | Description                               |
 |--------+---------------------------+-------------------------------------------|
-| [X]    | [[./doomnote][Doomnote]   | Note-Taking Class                         |
+| ✅     | [[./doomnote][Doomnote]]  | Note-Taking Class                         |
 |--------+---------------------------+-------------------------------------------|
-| [ ]    | Doom CV                   | Curriculum Vitae                          |
+| 🚧     | Doom CV                   | Curriculum Vitae                          |
 |--------+---------------------------+-------------------------------------------|
-| [ ]    | Doom Prez                 | Presentation Class                        |
+| 🚧     | Doom Prez                 | Presentation Class                        |
 |--------+---------------------------+-------------------------------------------|
-| [ ]    | Doom WSA                  | German Highschool Science Project Template|
+| 🚧     | Doom WSA                  | German Highschool Science Project Template|
 
