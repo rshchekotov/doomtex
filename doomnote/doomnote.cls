@@ -28,9 +28,8 @@
 \RequirePackage{amsthm}
 \RequirePackage{amssymb}
 \RequirePackage{thmtools}
-\input{karnaugh/kvmacros}
 
-\usetikzlibrary{shapes, backgrounds}
+\usetikzlibrary{shapes, backgrounds, karnaugh}
 
 \pagestyle{fancy}
 \newcommand\lecnum{Note}
